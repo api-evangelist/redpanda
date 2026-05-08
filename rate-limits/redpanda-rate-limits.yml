@@ -5,32 +5,80 @@ provider: Redpanda
 providerId: redpanda
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
-- Streaming
-- Kafka
-- Event Streaming
-- Real-Time
-- Data Platform
-- Rate Limiting
-- Quotas
-- Throttling
-description: Placeholder rate-limit artifact for Redpanda. Replace with real limits once the pipeline
-  researches the provider's rate-limit documentation.
-notes: Initial scaffold — limits have not yet been reconciled against the provider's documentation.
+  - Streaming
+  - Kafka
+  - Event Streaming
+  - Open Source
+  - Rate Limiting
+  - Quotas
+  - Throttling
+description: >-
+  Redpanda enforces rate limits at two layers. (1) The broker side implements per-client and per-tenant Kafka quotas using the standard Kafka quota mechanism — produce/consume bandwidth quotas, request-rate quotas, and connection-creation rate limits, all configurable via the Admin API and rpk. (2) Redpanda Cloud Serverless additionally enforces tenant-level quotas (max throughput, max partitions, max retention) tied to the subscription tier, returning Kafka THROTTLE responses when exceeded. The Admin API and Schema Registry API have no published per-second limits in the OSS broker; throttling there is a function of the operator's HTTP front-end (e.g., NGINX) configuration.
+notes: >-
+  Self-hosted operators set quotas explicitly via cluster configuration and rpk. Redpanda Cloud limits per cluster type are documented in the customer's cluster details page; verify with the Cloud Control Plane API at provisioning time.
 sources:
-- https://redpanda.com/
+  - https://docs.redpanda.com/current/manage/cluster-maintenance/manage-throughput/
+  - https://docs.redpanda.com/redpanda-cloud/manage/api/
+  - https://kafka.apache.org/documentation/#design_quotas
 responseCodes:
-  throttled: 429
+  kafkaThrottle: KAFKA_RESP_THROTTLE_TIME_MS
+  unauthorized: 401
+  forbidden: 403
 limits:
-- name: Default
-  scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+  - name: Per-Client Producer Bandwidth Quota
+    scope: client-id
+    metric: bytes-per-second
+    limit: -1
+    timeFrame: second
+    notes: >-
+      Configurable per client-id via target_quota_byte_rate and Kafka client-quota APIs; limits sustained produce throughput per producer.
+  - name: Per-Client Consumer Bandwidth Quota
+    scope: client-id
+    metric: bytes-per-second
+    limit: -1
+    timeFrame: second
+    notes: >-
+      Configurable per client-id via target_fetch_quota_byte_rate; limits sustained fetch throughput per consumer.
+  - name: Per-Topic Throughput Quota
+    scope: topic
+    metric: bytes-per-second
+    limit: -1
+    timeFrame: second
+    notes: >-
+      Configurable per topic to bound noisy producers/consumers; supports both ingress and egress limits.
+  - name: Connection Creation Rate
+    scope: broker
+    metric: new-connections-per-second
+    limit: -1
+    timeFrame: second
+    notes: >-
+      Configurable via kafka_connection_rate_limit; protects against thundering-herd reconnect storms.
+  - name: Cloud Serverless Throughput Tier
+    scope: cluster
+    metric: bytes-per-second
+    limit: -1
+    timeFrame: second
+    notes: >-
+      Tier-defined ingress + egress cap on Redpanda Cloud Serverless; exceeding triggers Kafka throttle responses.
+  - name: Cloud Partition Quota
+    scope: cluster
+    metric: partitions
+    limit: -1
+    timeFrame: simultaneous
+    notes: >-
+      Per-tier cap on total partitions per Cloud cluster; subject to subscription tier.
 policies:
-- name: Backoff Strategy
-  description: Clients should implement exponential backoff with jitter and honor any Retry-After header.
+  - name: Kafka Throttling Response
+    description: >-
+      Kafka clients receive a throttle_time_ms response field; well-behaved clients honor it and back off automatically. Most modern Kafka libraries handle this transparently.
+  - name: Quota Discovery
+    description: >-
+      Use rpk cluster quotas describe (or the AdminClient describeClientQuotas RPC) to enumerate active quotas; tune via rpk cluster quotas alter or the Admin API.
+  - name: Cloud Tier Selection
+    description: >-
+      Right-size the Cloud Serverless or Dedicated tier to peak ingress/egress; upgrade tier or switch to Dedicated/BYOC if sustained throughput approaches the cap.
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

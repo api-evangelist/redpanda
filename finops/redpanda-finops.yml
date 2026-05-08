@@ -5,63 +5,129 @@ provider: Redpanda
 providerId: redpanda
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
-- Streaming
-- Kafka
-- Event Streaming
-- Real-Time
-- Data Platform
-- FinOps
-- Cost Management
-- FOCUS
-description: FOCUS-aligned FinOps placeholder for Redpanda. Pipeline will replace with the provider's
-  real billing-model details once researched.
-notes: Initial scaffold — billing model has not yet been reconciled.
+  - Streaming
+  - Kafka
+  - Event Streaming
+  - Open Source
+  - FinOps
+  - Cost Management
+  - FOCUS
+description: >-
+  Redpanda has a hybrid billing surface. The open-source Community Edition (BSL 1.1) generates no Redpanda invoice; cost flows through the operator's own cloud bill (compute, storage, networking). Redpanda Cloud Serverless bills usage-based (no base fee, $100 trial credit). Cloud Dedicated and BYOC are committed/throughput-tier subscriptions with separate charges for tiered storage, networking, and PrivateLink. BYOC additionally produces cloud-provider charges directly to the customer's AWS/GCP/Azure account, with Redpanda only invoicing a management fee. Self-managed Enterprise carries an annual license fee.
+notes: >-
+  Reconciled at the model level on 2026-05-08. Per-tier hourly rates for Dedicated/BYOC are quoted by Redpanda sales; the customer-facing price-estimator on redpanda.com produces project-specific quotes. No public FOCUS-format usage feed exists; usage data is available via the Cloud Console and contractual usage reports.
 sources:
-- https://redpanda.com/
-- https://focus.finops.org/focus-specification/v1-3/
+  - https://www.redpanda.com/pricing
+  - https://www.redpanda.com/redpanda-cloud
+  - https://focus.finops.org/focus-specification/v1-3/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-publisherName: Redpanda
+publisherName: Redpanda Data
 serviceCategory: Streaming
 billingModel:
-  pricingCategory: To Be Reconciled
+  pricingCategory: Hybrid Subscription, Usage-Based, and Open-Source
   billingFrequency: Monthly
+  billingTerm: Hourly metering with monthly invoice; annual term available
   billingCurrency: USD
   chargeCategories:
-  - Usage
-  - Purchase
-  - Adjustment
+    - Subscription
+    - Usage
+    - Adjustment
+    - Tax
+  commitmentDiscount: Reserved-capacity / annual prepay discount on Cloud Dedicated and Enterprise.
 focusColumns:
-  ServiceName: Redpanda
+  ServiceName: Redpanda Cloud
   ServiceCategory: Streaming
-  ProviderName: Redpanda
-  PublisherName: Redpanda
-  InvoiceIssuerName: Redpanda
+  ProviderName: Redpanda Data
+  PublisherName: Redpanda Data
+  InvoiceIssuerName: Redpanda Data
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Subscription
+  PricingCategory: Standard Pricing
 meters:
-- name: api_usage
-  description: Catch-all meter pending reconciliation against the provider's published metering.
-  unit: varies
-  aggregation: sum
-  dimensions:
-  - account
-  - resource
+  - name: cluster_hours
+    description: Per-cluster active-hours billed by tier (Serverless, Dedicated tiers).
+    unit: cluster-hour
+    aggregation: sum
+    dimensions:
+      - organization
+      - cluster
+      - tier
+      - region
+  - name: ingress_bytes
+    description: Bytes produced into Redpanda Cloud (Serverless usage-based component).
+    unit: byte
+    aggregation: sum
+    dimensions:
+      - organization
+      - cluster
+      - tenant
+  - name: egress_bytes
+    description: Bytes consumed from Redpanda Cloud (cross-AZ / cross-region egress may carry cloud-provider charges).
+    unit: byte
+    aggregation: sum
+    dimensions:
+      - organization
+      - cluster
+      - tenant
+      - direction
+  - name: partition_count
+    description: Total partitions held by the cluster (Serverless / Dedicated quota element).
+    unit: partition-month
+    aggregation: max
+    dimensions:
+      - organization
+      - cluster
+  - name: tiered_storage_gb
+    description: Storage used by tiered/object-storage retention.
+    unit: gb-month
+    aggregation: max
+    dimensions:
+      - organization
+      - cluster
+      - storage_class
+  - name: privatelink_endpoints
+    description: Active AWS PrivateLink / GCP PSC endpoint hours.
+    unit: endpoint-hour
+    aggregation: sum
+    dimensions:
+      - organization
+      - cluster
+      - cloud
+  - name: byoc_management_fee
+    description: Per-cluster monthly management fee for BYOC deployments (cloud infrastructure billed separately to customer cloud account).
+    unit: cluster-month
+    aggregation: max
+    dimensions:
+      - organization
+      - cluster
+      - tier
+  - name: enterprise_license
+    description: Self-managed Enterprise annual license, custom-quoted by capacity.
+    unit: license-year
+    aggregation: max
+    dimensions:
+      - customer
+      - capacity
 principles:
-- name: Visibility
-  description: Pull provider invoices or usage exports until a self-serve usage feed is documented.
-- name: Allocation
-  description: Tag invoice line items to consuming business units in your FinOps store.
-- name: Optimization
-  description: Levers depend on the provider's billing model; review at renewal once reconciled.
-- name: Accountability
-  description: Assign a contract owner to review billing against negotiated terms.
+  - name: Visibility
+    description: >-
+      Use the Redpanda Cloud Console for usage and invoice details. For BYOC, pair the Redpanda invoice with cost-allocation tags pulled from the customer's cloud bill (FOCUS-formatted exports from AWS/GCP/Azure cover the underlying infrastructure).
+  - name: Allocation
+    description: >-
+      Tag clusters by environment and business unit; on Cloud Serverless, dedicate clusters per tenant for clean attribution. For self-hosted, tag the underlying compute, EBS volumes, and S3 buckets used for tiered storage.
+  - name: Optimization
+    description: >-
+      Use tiered storage to cut hot-storage cost (8-9x savings claimed); enable compression and right-size partitions; consolidate idle Serverless clusters; consider BYOC for very large workloads to leverage cloud committed-use discounts.
+  - name: Accountability
+    description: >-
+      Assign a cluster owner per environment; review monthly forecast versus invoice; alert on partition-count, ingress-throughput, and tiered-storage growth as leading cost indicators.
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

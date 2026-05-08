@@ -5,38 +5,142 @@ provider: Redpanda
 providerId: redpanda
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
-- Streaming
-- Kafka
-- Event Streaming
-- Real-Time
-- Data Platform
-- Plans
-description: Placeholder plans/pricing artifact for Redpanda. Replace with real published pricing once
-  the pipeline researches the provider's plans page.
-notes: Initial scaffold — plans/pricing have not yet been reconciled against the provider's documentation.
+  - Streaming
+  - Kafka
+  - Event Streaming
+  - Open Source
+  - Plans
+description: >-
+  Redpanda is offered in two consumption models. The open-source Redpanda Community Edition (Business Source License 1.1) is free to download and self-host with all core streaming features. The commercial Redpanda Cloud is sold in three deployment topologies — Serverless (multi-tenant, usage-based), Dedicated (single-tenant on Redpanda-managed infrastructure), and BYOC (Bring Your Own Cloud, deployed in the customer's account) — each priced by throughput tier with options for tiered storage. Redpanda Enterprise (self-managed) and BYOC carry a license fee with support, SSO, audit logging, and tiered storage.
+notes: >-
+  Reconciled at the tier level against https://www.redpanda.com/pricing and https://www.redpanda.com/redpanda-cloud on 2026-05-08. Specific dollar pricing for Dedicated and BYOC is custom-quoted; Serverless is usage-based with $100 trial credits. The price-estimator tool on redpanda.com produces project-specific quotes.
 sources:
-- https://redpanda.com/
+  - https://www.redpanda.com/pricing
+  - https://www.redpanda.com/redpanda-cloud
+  - https://github.com/redpanda-data/redpanda/blob/dev/licenses/bsl.md
 plans:
-- id: redpanda-default
-  name: To Be Reconciled
-  type: enterprise
-  description: Initial scaffold; replace with provider plan tiers (Free / Pro / Enterprise / pay-as-you-go,
-    etc.) once pricing is reconciled.
-  entries:
-  - label: API Access
-    name: api_access
-    type: flat
-    metric: varies
-    limit: -1
-    timeFrame: usage
-    geo: global
-    unit: 1
-    price: see https://redpanda.com/
-    userMultiplied: false
-  elements:
-  - name: Pending Reconciliation
+  - id: redpanda-community
+    name: Community Edition (Open Source)
+    type: free
+    description: >-
+      Self-managed Redpanda under the Business Source License 1.1 — Kafka API, Admin API, Schema Registry, HTTP Proxy, rpk, Console (open-source). All core features required to run a streaming platform in production at no software cost. Customer pays only their own infrastructure (compute, storage, network).
+    entries:
+      - label: Self-Host
+        name: self_host
+        type: flat
+        metric: cluster
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 0
+        currency: USD
+        userMultiplied: false
+    elements:
+      - name: Kafka API Compatibility
+      - name: Schema Registry
+      - name: HTTP Proxy
+      - name: rpk + Console
+      - name: BSL 1.1 License
+  - id: redpanda-enterprise-self-managed
+    name: Enterprise (Self-Managed)
+    type: enterprise
+    description: >-
+      Self-managed deployment of Redpanda with the Enterprise feature set — tiered storage, transparent disk encryption, SSO/OIDC, audit logging, role-based access control, AWS PrivateLink, and 24x7 support. License fee is custom-quoted by capacity, deployment, and term.
+    entries:
+      - label: Custom License
+        name: custom_license
+        type: custom
+        metric: cluster
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: contact_sales
+        currency: USD
+        userMultiplied: false
+    elements:
+      - name: Tiered Storage
+      - name: SSO / SAML / OIDC
+      - name: Audit Logging
+      - name: RBAC
+      - name: PrivateLink
+      - name: 24x7 Support
+  - id: redpanda-cloud-serverless
+    name: Cloud Serverless
+    type: paid
+    description: >-
+      Multi-tenant Redpanda Cloud clusters created on demand with no base cost; billed by usage on ingress, egress, partitions, and retained data. New trials receive $100 in credits. Aimed at variable workloads, prototypes, and bursty traffic.
+    entries:
+      - label: Trial Credit
+        name: trial_credit
+        type: flat
+        metric: account
+        limit: 1
+        timeFrame: lifetime
+        geo: global
+        unit: 1
+        price: 100
+        currency: USD
+        userMultiplied: false
+      - label: Usage-Based
+        name: usage_based
+        type: per_unit
+        metric: gb-and-partition
+        unit: 1
+        timeFrame: usage
+        geo: global
+        price: contact_sales
+        currency: USD
+    elements:
+      - name: Zero Base Cost
+      - name: Multi-Tenant Hosting
+      - name: Auto-Scale
+      - name: Trial Credits
+  - id: redpanda-cloud-dedicated
+    name: Cloud Dedicated
+    type: paid
+    description: >-
+      Single-tenant Redpanda Cloud cluster on AWS, GCP, or Azure managed by Redpanda. Priced per throughput tier (small / medium / large) by hour with separate charges for tiered storage, networking, and PrivateLink. Custom pricing per region and reserved-capacity discount available.
+    entries:
+      - label: Throughput-Tier Hourly
+        name: throughput_tier_hourly
+        type: per_unit
+        metric: cluster-hour
+        unit: 1
+        timeFrame: hour
+        geo: global
+        price: contact_sales
+        currency: USD
+    elements:
+      - name: Single-Tenant Cluster
+      - name: AWS / GCP / Azure
+      - name: Configurable Instance Sizes
+      - name: Tiered Storage Available
+      - name: Reserved-Capacity Discount
+  - id: redpanda-cloud-byoc
+    name: Cloud BYOC (Bring Your Own Cloud)
+    type: paid
+    description: >-
+      Fully managed Redpanda cluster deployed in the customer's own AWS/GCP/Azure account. Customer pays cloud infrastructure costs directly to their cloud provider; Redpanda charges a per-throughput-tier management fee. Sensitive data and credentials never leave the customer's environment.
+    entries:
+      - label: Management Fee per Throughput Tier
+        name: byoc_management_fee
+        type: custom
+        metric: cluster-month
+        unit: 1
+        timeFrame: month
+        geo: global
+        price: contact_sales
+        currency: USD
+    elements:
+      - name: In-Tenant Deployment
+      - name: Redpanda-Managed Operations
+      - name: Data Sovereignty
+      - name: Tiered Storage
+      - name: PrivateLink Support
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,9 +1,9 @@
 aid: redpanda
 url: https://raw.githubusercontent.com/api-evangelist/redpanda/refs/heads/main/apis.yml
 name: Redpanda
-x-type: company
+x-type: opensource
 description: >-
-  Redpanda is a Kafka-compatible streaming data platform written in C++ with no JVM and no ZooKeeper, optimized for low latency and operational simplicity. The Redpanda Cloud API exposes clusters, topics, ACLs, and serverless namespaces.
+  Redpanda is a Kafka API-compatible streaming data platform written in C++ with no JVM and no ZooKeeper, optimized for low latency and operational simplicity. The core broker (redpanda) is open source and available under the Business Source License 1.1, and a fully managed cloud service (Redpanda Cloud — Serverless, Dedicated, BYOC) is offered commercially. Redpanda Connect (formerly Benthos) provides stream processing. The platform exposes the Kafka wire protocol, an Admin API, a Schema Registry API, an HTTP Proxy (Pandaproxy), Kafka-compatible client APIs, and the Redpanda Cloud Control Plane and Data Plane APIs for managed deployments.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Streaming
@@ -11,13 +11,195 @@ tags:
   - Event Streaming
   - Real-Time
   - Data Platform
+  - Open Source
+  - C++
+  - Stream Processing
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
-apis: []
+apis:
+  - aid: redpanda:redpanda-kafka-api
+    name: Redpanda Kafka API
+    tags:
+      - Kafka
+      - Wire Protocol
+      - Producers
+      - Consumers
+    properties:
+      - url: https://docs.redpanda.com/current/develop/kafka-clients/
+        type: Documentation
+      - url: https://kafka.apache.org/protocol
+        type: API Reference
+    description: >-
+      Redpanda implements the Apache Kafka wire protocol natively, allowing existing Kafka clients (producers, consumers, AdminClient, Streams, Connect) to work unchanged against Redpanda brokers on TCP port 9092 (or the cluster's configured Kafka API port).
+  - aid: redpanda:redpanda-admin-api
+    name: Redpanda Admin API
+    tags:
+      - Admin
+      - Cluster
+      - Brokers
+      - Configuration
+      - Operations
+    properties:
+      - url: https://docs.redpanda.com/api/admin-api/
+        type: Documentation
+      - url: https://docs.redpanda.com/current/reference/api-reference/admin-api/
+        type: API Reference
+    description: >-
+      The Redpanda Admin API is a built-in HTTP REST API (default port 9644) exposing cluster operations not covered by the Kafka protocol — broker membership, decommissioning, rebalance, license, debug bundle, configuration, leadership, security, and partitions.
+  - aid: redpanda:redpanda-schema-registry-api
+    name: Redpanda Schema Registry API
+    tags:
+      - Schema Registry
+      - Avro
+      - JSON Schema
+      - Protobuf
+    properties:
+      - url: https://docs.redpanda.com/current/manage/schema-reg/
+        type: Documentation
+      - url: https://docs.redpanda.com/api/schema-registry-api/
+        type: API Reference
+    description: >-
+      The Redpanda Schema Registry API is a Confluent-Schema-Registry-compatible REST API for managing Avro, JSON Schema, and Protobuf schema versions and subjects bound to topic events.
+  - aid: redpanda:redpanda-http-proxy-api
+    name: Redpanda HTTP Proxy (Pandaproxy) API
+    tags:
+      - HTTP Proxy
+      - REST
+      - Producers
+      - Consumers
+    properties:
+      - url: https://docs.redpanda.com/current/develop/http-proxy/
+        type: Documentation
+      - url: https://docs.redpanda.com/api/pandaproxy/
+        type: API Reference
+    description: >-
+      The Redpanda HTTP Proxy (Pandaproxy) provides a REST API for producing and consuming topic data without a Kafka client library, useful for environments where embedding a Kafka driver is impractical.
+  - aid: redpanda:redpanda-cloud-control-plane-api
+    name: Redpanda Cloud Control Plane API
+    tags:
+      - Cloud
+      - Control Plane
+      - Clusters
+      - Networks
+      - Organizations
+      - Resource Groups
+    properties:
+      - url: https://docs.redpanda.com/redpanda-cloud/manage/api/
+        type: Documentation
+    description: >-
+      The Redpanda Cloud Control Plane API manages organization-wide resources — clusters, networks, resource groups, users, and serverless namespaces — across the Redpanda Cloud (Serverless, Dedicated, BYOC) deployments.
+  - aid: redpanda:redpanda-cloud-data-plane-api
+    name: Redpanda Cloud Data Plane API
+    tags:
+      - Cloud
+      - Data Plane
+      - Topics
+      - ACLs
+      - Users
+    properties:
+      - url: https://docs.redpanda.com/redpanda-cloud/manage/api/
+        type: Documentation
+    description: >-
+      The Redpanda Cloud Data Plane API manages in-cluster resources — topics, ACLs, RBAC, users, schema registry, and connectors — for an individual Redpanda Cloud cluster.
+  - aid: redpanda:redpanda-console-api
+    name: Redpanda Console API
+    tags:
+      - Console
+      - UI
+      - Backend API
+    properties:
+      - url: https://docs.redpanda.com/current/manage/console/
+        type: Documentation
+      - url: https://github.com/redpanda-data/console
+        type: Source
+    description: >-
+      The Redpanda Console API powers the Redpanda Console UI (open-source) — topics, consumer groups, broker view, schema registry browsing, and ACL management — and can be called directly to embed Console functionality.
+  - aid: redpanda:redpanda-connect-api
+    name: Redpanda Connect (Benthos) API
+    tags:
+      - Stream Processing
+      - Connectors
+      - Benthos
+      - ETL
+    properties:
+      - url: https://docs.redpanda.com/redpanda-connect/about/
+        type: Documentation
+      - url: https://github.com/redpanda-data/connect
+        type: Source
+    description: >-
+      Redpanda Connect (formerly Benthos) is a declarative stream-processor exposing an HTTP API for managing pipelines, inputs, outputs, processors, and metrics — bridging Kafka, S3, databases, and HTTP sinks.
+  - aid: redpanda:redpanda-rpk-api
+    name: Redpanda rpk CLI Surface
+    tags:
+      - CLI
+      - rpk
+      - Operations
+    properties:
+      - url: https://docs.redpanda.com/current/reference/rpk/
+        type: Documentation
+      - url: https://github.com/redpanda-data/redpanda
+        type: Source
+    description: >-
+      rpk is the Redpanda command-line tool, wrapping the Kafka, Admin, Schema Registry, and Cloud APIs into operator-friendly commands for deployment, configuration, topic management, ACLs, and benchmarking.
+  - aid: redpanda:redpanda-iceberg-topic-api
+    name: Redpanda Iceberg Topic API
+    tags:
+      - Iceberg
+      - Lakehouse
+      - Tiered Storage
+    properties:
+      - url: https://docs.redpanda.com/current/manage/iceberg/
+        type: Documentation
+    description: >-
+      Redpanda Iceberg Topics expose topic data as Apache Iceberg tables in object storage, accessible from the Iceberg REST catalog and consumable by query engines like Spark, Trino, and Snowflake.
 common:
   - type: Website
     url: https://redpanda.com/
+  - type: Documentation
+    url: https://docs.redpanda.com/
+  - type: API Reference
+    url: https://docs.redpanda.com/api/
+  - type: Getting Started
+    url: https://docs.redpanda.com/current/get-started/
+  - type: Pricing
+    url: https://www.redpanda.com/pricing
+  - type: Sign Up
+    url: https://cloud.redpanda.com/signup
+  - type: Login
+    url: https://cloud.redpanda.com/
+  - type: GitHub Organization
+    url: https://github.com/redpanda-data
+  - type: Source
+    url: https://github.com/redpanda-data/redpanda
+  - type: License
+    url: https://github.com/redpanda-data/redpanda/blob/dev/licenses/bsl.md
+  - type: Helm Charts
+    url: https://github.com/redpanda-data/helm-charts
+  - type: Console
+    url: https://github.com/redpanda-data/console
+  - type: Connect
+    url: https://github.com/redpanda-data/connect
+  - type: Operator
+    url: https://github.com/redpanda-data/redpanda-operator
+  - type: Examples
+    url: https://github.com/redpanda-data/redpanda-examples
+  - type: Status
+    url: https://status.redpanda.com/
+  - type: Blog
+    url: https://www.redpanda.com/blog
+  - type: Change Log
+    url: https://docs.redpanda.com/current/release-notes/
+  - type: Governance
+    url: https://www.redpanda.com/about
+  - type: X (Twitter)
+    url: https://x.com/redpandadata
+  - type: YouTube
+    url: https://www.youtube.com/@RedpandaData
+  - type: Slack Community
+    url: https://redpandacommunity.slack.com/
+  - type: rpk CLI
+    url: https://docs.redpanda.com/current/reference/rpk/
   - type: Plans
     url: plans/redpanda-plans-pricing.yml
   - type: RateLimits
