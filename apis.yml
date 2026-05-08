@@ -45,6 +45,18 @@ apis:
         type: Documentation
       - url: https://docs.redpanda.com/current/reference/api-reference/admin-api/
         type: API Reference
+      - url: openapi/redpanda-admin-cluster-openapi.json
+        type: OpenAPI
+      - url: openapi/redpanda-admin-broker-openapi.json
+        type: OpenAPI
+      - url: openapi/redpanda-admin-partition-openapi.json
+        type: OpenAPI
+      - url: openapi/redpanda-admin-debug-openapi.json
+        type: OpenAPI
+      - url: openapi/redpanda-admin-transform-openapi.json
+        type: OpenAPI
+      - url: openapi/redpanda-admin-usage-openapi.json
+        type: OpenAPI
     description: >-
       The Redpanda Admin API is a built-in HTTP REST API (default port 9644) exposing cluster operations not covered by the Kafka protocol — broker membership, decommissioning, rebalance, license, debug bundle, configuration, leadership, security, and partitions.
   - aid: redpanda:redpanda-schema-registry-api
