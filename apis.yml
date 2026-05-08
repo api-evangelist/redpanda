@@ -1,0 +1,29 @@
+aid: redpanda
+url: https://raw.githubusercontent.com/api-evangelist/redpanda/refs/heads/main/apis.yml
+name: Redpanda
+x-type: company
+description: >-
+  Redpanda is a Kafka-compatible streaming data platform written in C++ with no JVM and no ZooKeeper, optimized for low latency and operational simplicity. The Redpanda Cloud API exposes clusters, topics, ACLs, and serverless namespaces.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Streaming
+  - Kafka
+  - Event Streaming
+  - Real-Time
+  - Data Platform
+created: '2026-05-08'
+modified: '2026-05-08'
+specificationVersion: '0.19'
+apis: []
+common:
+  - type: Website
+    url: https://redpanda.com/
+  - type: Plans
+    url: plans/redpanda-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/redpanda-rate-limits.yml
+  - type: FinOps
+    url: finops/redpanda-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
