@@ -1,0 +1,13 @@
+{
+  "repo": "redpanda",
+  "feeds": [
+    {
+      "source": "https://www.redpanda.com/blog",
+      "feed_url": "https://www.redpanda.com/blog/rss.xml",
+      "title": "Redpanda",
+      "saved": 24
+    }
+  ],
+  "fetched": "2026-05-09T20:17:51Z",
+  "post_count": 24
+}
