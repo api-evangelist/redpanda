@@ -218,6 +218,82 @@ common:
     url: rate-limits/redpanda-rate-limits.yml
   - type: FinOps
     url: finops/redpanda-finops.yml
+  - type: Integrations
+    url: https://www.redpanda.com/partners
+integrations:
+  - name: Redpanda
+  - name: Snowflake
+  - name: Databricks
+  - name: Amazon Web Services (AWS)
+  - name: Fiveonefour
+  - name: TigerBeetle
+  - name: Akamai Technologies
+  - name: Google Cloud Platform (GCP)
+  - name: Azure
+  - name: Cohere
+  - name: Wipro
+  - name: Accenture
+  - name: Ness
+  - name: EPAM
+  - name: TCS
+  - name: Slalom
+  - name: MongoDB
+  - name: Conduktor
+  - name: Ververica
+  - name: Atlan
+  - name: Converge
+  - name: Elastic
+  - name: Exafluence
+  - name: phData
+  - name: Pure Storage
+  - name: Starburst
+  - name: TinyBird
+  - name: Trace3
+  - name: Aerospike
+  - name: ClickHouse
+  - name: Cloud303
+  - name: Couchbase
+  - name: Datanised
+  - name: Decodable
+  - name: Delta Consulting
+  - name: DeltaStream
+  - name: DisruptX
+  - name: Dremio
+  - name: Firebolt
+  - name: Gravity9
+  - name: Hazelcast
+  - name: HiveMQ
+  - name: Imply
+  - name: IntVerse
+  - name: IT-Novum
+  - name: Lenses
+  - name: Mantel Group
+  - name: Materialize
+  - name: Metanet Global
+  - name: MindLabs
+  - name: Molo17
+  - name: Ockam
+  - name: One-Way Automation
+  - name: Onibex
+  - name: Orium
+  - name: Pandata Group
+  - name: Pinecone
+  - name: Platformatory
+  - name: PuppyGraph
+  - name: Qdrant
+  - name: REDspace
+  - name: RichIT
+  - name: Rock8
+  - name: ScyllaDB
+  - name: SingleStore
+  - name: Snowplow
+  - name: SSCI
+  - name: TechRom
+  - name: Teknologika
+  - name: TimePlus
+  - name: Timestamp
+  - name: Upbound
+  - name: VerticalServe
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
