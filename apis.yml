@@ -1,7 +1,7 @@
 aid: redpanda
 url: https://raw.githubusercontent.com/api-evangelist/redpanda/refs/heads/main/apis.yml
 name: Redpanda
-x-type: opensource
+kind: opensource
 description: >-
   Redpanda is a Kafka API-compatible streaming data platform written in C++ with no JVM and no ZooKeeper, optimized for low latency and operational simplicity. The core broker (redpanda) is open source and available under the Business Source License 1.1, and a fully managed cloud service (Redpanda Cloud — Serverless, Dedicated, BYOC) is offered commercially. Redpanda Connect (formerly Benthos) provides stream processing. The platform exposes the Kafka wire protocol, an Admin API, a Schema Registry API, an HTTP Proxy (Pandaproxy), Kafka-compatible client APIs, and the Redpanda Cloud Control Plane and Data Plane APIs for managed deployments.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
@@ -29,7 +29,7 @@ apis:
       - url: https://docs.redpanda.com/current/develop/kafka-clients/
         type: Documentation
       - url: https://kafka.apache.org/protocol
-        type: API Reference
+        type: APIReference
     description: >-
       Redpanda implements the Apache Kafka wire protocol natively, allowing existing Kafka clients (producers, consumers, AdminClient, Streams, Connect) to work unchanged against Redpanda brokers on TCP port 9092 (or the cluster's configured Kafka API port).
   - aid: redpanda:redpanda-admin-api
@@ -44,7 +44,7 @@ apis:
       - url: https://docs.redpanda.com/api/admin-api/
         type: Documentation
       - url: https://docs.redpanda.com/current/reference/api-reference/admin-api/
-        type: API Reference
+        type: APIReference
       - url: openapi/redpanda-admin-cluster-openapi.json
         type: OpenAPI
       - url: openapi/redpanda-admin-broker-openapi.json
@@ -70,7 +70,7 @@ apis:
       - url: https://docs.redpanda.com/current/manage/schema-reg/
         type: Documentation
       - url: https://docs.redpanda.com/api/schema-registry-api/
-        type: API Reference
+        type: APIReference
     description: >-
       The Redpanda Schema Registry API is a Confluent-Schema-Registry-compatible REST API for managing Avro, JSON Schema, and Protobuf schema versions and subjects bound to topic events.
   - aid: redpanda:redpanda-http-proxy-api
@@ -84,7 +84,7 @@ apis:
       - url: https://docs.redpanda.com/current/develop/http-proxy/
         type: Documentation
       - url: https://docs.redpanda.com/api/pandaproxy/
-        type: API Reference
+        type: APIReference
     description: >-
       The Redpanda HTTP Proxy (Pandaproxy) provides a REST API for producing and consuming topic data without a Kafka client library, useful for environments where embedding a Kafka driver is impractical.
   - aid: redpanda:redpanda-cloud-control-plane-api
@@ -170,17 +170,17 @@ common:
     url: https://redpanda.com/
   - type: Documentation
     url: https://docs.redpanda.com/
-  - type: API Reference
+  - type: APIReference
     url: https://docs.redpanda.com/api/
-  - type: Getting Started
+  - type: GettingStarted
     url: https://docs.redpanda.com/current/get-started/
   - type: Pricing
     url: https://www.redpanda.com/pricing
-  - type: Sign Up
+  - type: SignUp
     url: https://cloud.redpanda.com/signup
   - type: Login
     url: https://cloud.redpanda.com/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/redpanda-data
   - type: Source
     url: https://github.com/redpanda-data/redpanda
@@ -196,11 +196,11 @@ common:
     url: https://github.com/redpanda-data/redpanda-operator
   - type: Examples
     url: https://github.com/redpanda-data/redpanda-examples
-  - type: Status
+  - type: StatusPage
     url: https://status.redpanda.com/
   - type: Blog
     url: https://www.redpanda.com/blog
-  - type: Change Log
+  - type: ChangeLog
     url: https://docs.redpanda.com/current/release-notes/
   - type: Governance
     url: https://www.redpanda.com/about
