@@ -166,6 +166,8 @@ apis:
     description: >-
       Redpanda Iceberg Topics expose topic data as Apache Iceberg tables in object storage, accessible from the Iceberg REST catalog and consumable by query engines like Spark, Trino, and Snowflake.
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/redpanda-data
   - type: Website
     url: https://redpanda.com/
   - type: Documentation
