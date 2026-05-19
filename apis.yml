@@ -15,7 +15,7 @@ tags:
   - C++
   - Stream Processing
 created: '2026-05-08'
-modified: '2026-05-08'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
   - aid: redpanda:redpanda-kafka-api
@@ -220,6 +220,9 @@ common:
     url: finops/redpanda-finops.yml
   - type: Integrations
     url: https://www.redpanda.com/partners
+  - name: MCP Server
+    url: https://www.redpanda.com/blog/building-low-code-mcp-servers-in-redpanda-cloud
+    type: MCPServer
 integrations:
   - name: Redpanda
   - name: Snowflake
