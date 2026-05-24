@@ -225,6 +225,8 @@ common:
   - name: MCP Server
     url: https://www.redpanda.com/blog/building-low-code-mcp-servers-in-redpanda-cloud
     type: MCPServer
+  - type: LLMsTxt
+    url: https://docs.redpanda.com/llms.txt
 integrations:
   - name: Redpanda
   - name: Snowflake
