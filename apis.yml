@@ -178,7 +178,7 @@ common:
     url: https://docs.redpanda.com/current/get-started/
   - type: Pricing
     url: https://www.redpanda.com/pricing
-  - type: SignUp
+  - type: Signup
     url: https://cloud.redpanda.com/signup
   - type: Login
     url: https://cloud.redpanda.com/
@@ -225,7 +225,7 @@ common:
   - name: MCP Server
     url: https://www.redpanda.com/blog/building-low-code-mcp-servers-in-redpanda-cloud
     type: MCPServer
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.redpanda.com/llms.txt
 integrations:
   - name: Redpanda
