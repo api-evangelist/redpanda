@@ -166,6 +166,12 @@ apis:
     description: >-
       Redpanda Iceberg Topics expose topic data as Apache Iceberg tables in object storage, accessible from the Iceberg REST catalog and consumable by query engines like Spark, Trino, and Snowflake.
 common:
+  - type: TrustCenter
+    url: security/redpanda-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/redpanda-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/redpanda-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/redpanda-data
   - type: Website
