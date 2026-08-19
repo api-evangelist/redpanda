@@ -28,7 +28,7 @@ tags:
   - Stream Processing
 created: '2026-05-08'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
   - aid: redpanda:redpanda-kafka-api
     name: Redpanda Kafka API
