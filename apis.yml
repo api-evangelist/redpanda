@@ -23,6 +23,15 @@ tags:
   - Event Streaming
   - Real-Time
   - Data Platform
+  - Open-Source
+  - C++
+  - Stream Processing
+tags_raw:
+  - Streaming
+  - Kafka
+  - Event Streaming
+  - Real-Time
+  - Data Platform
   - Open Source
   - C++
   - Stream Processing
@@ -51,6 +60,11 @@ apis:
       - Cluster
       - Brokers
       - Configuration
+    tags_raw:
+      - Admin
+      - Cluster
+      - Brokers
+      - Configuration
       - Operations
     properties:
       - url: https://docs.redpanda.com/api/admin-api/
@@ -74,6 +88,11 @@ apis:
   - aid: redpanda:redpanda-schema-registry-api
     name: Redpanda Schema Registry API
     tags:
+      - Schema Registry
+      - Avro
+      - JSON-Schema
+      - Protobuf
+    tags_raw:
       - Schema Registry
       - Avro
       - JSON Schema
@@ -104,6 +123,13 @@ apis:
     tags:
       - Cloud
       - Control Plane
+      - Cluster
+      - Networks
+      - Organization
+      - Resource Groups
+    tags_raw:
+      - Cloud
+      - Control Plane
       - Clusters
       - Networks
       - Organizations
@@ -116,6 +142,12 @@ apis:
   - aid: redpanda:redpanda-cloud-data-plane-api
     name: Redpanda Cloud Data Plane API
     tags:
+      - Cloud
+      - Data Plane
+      - Topics
+      - ACL
+      - User
+    tags_raw:
       - Cloud
       - Data Plane
       - Topics
@@ -156,6 +188,9 @@ apis:
   - aid: redpanda:redpanda-rpk-api
     name: Redpanda rpk CLI Surface
     tags:
+      - CLI
+      - rpk
+    tags_raw:
       - CLI
       - rpk
       - Operations
