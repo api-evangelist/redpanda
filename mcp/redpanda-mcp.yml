@@ -1,0 +1,31 @@
+generated: '2026-09-11'
+method: probed
+source: https://www.redpanda.com/blog/building-low-code-mcp-servers-in-redpanda-cloud
+status: published
+server:
+  name: redpanda
+  transport: http
+  url: https://docs.redpanda.com/mcp
+deployment:
+  mode: remote
+  endpoint: https://docs.redpanda.com/mcp
+  verified: probed
+  probe: live
+  checked: '2026-09-11'
+  source: docs-check 2026-09-11 (endpoint found in the provider's own documentation, then probed)
+tools_count: 6
+tools:
+- name: ask_redpanda_question
+  description: ''
+- name: list_api_reference_pages
+  description: ''
+- name: search_api_reference
+  description: ''
+- name: get_api_reference_content
+  description: ''
+- name: submit_documentation_feedback
+  description: ''
+- name: get_more_tools
+  description: ''
+tools_source: live tools/list via initialize handshake, 2026-09-11 (signals/audit_mcp_authorship.py --probe)
+authorship: provider
