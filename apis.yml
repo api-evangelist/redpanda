@@ -155,7 +155,7 @@ apis:
     tags:
       - Cloud
       - Data Plane
-      - Topics
+      - Topic
       - ACL
       - User
     tags_raw:
