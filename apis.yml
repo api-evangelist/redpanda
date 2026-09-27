@@ -34,7 +34,7 @@ tags:
   - Event Streaming
   - Real-Time
   - Data Platform
-  - Open-Source
+  - Open Source
   - C++
   - Stream Processing
 tags_raw:
@@ -46,6 +46,7 @@ tags_raw:
   - Open Source
   - C++
   - Stream Processing
+  - Open-Source
 created: '2026-05-08'
 modified: '2026-05-19'
 specificationVersion: '0.23'
@@ -101,13 +102,14 @@ apis:
     tags:
       - Schema Registry
       - Avro
-      - JSON-Schema
+      - JSON Schema
       - Protobuf
     tags_raw:
       - Schema Registry
       - Avro
       - JSON Schema
       - Protobuf
+      - JSON-Schema
     properties:
       - url: https://docs.redpanda.com/current/manage/schema-reg/
         type: Documentation
