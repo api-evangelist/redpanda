@@ -16,16 +16,29 @@ deployment:
 tools_count: 6
 tools:
 - name: ask_redpanda_question
-  description: ''
+  description: Search the official Redpanda documentation and return the most relevant sections from it
+    for a user query. Each returned section includes the url and its actual content in markdown. Use this
+    tool for all queries that require Redpanda knowle
 - name: list_api_reference_pages
-  description: ''
+  description: 'List pages in Redpanda API reference documentation. Returns endpoints, schemas, and topic
+    pages with URL, title, type, and description.  SCOPING (important for accurate results): - api="all"
+    or omit: Lists all available APIs - api="admin":'
 - name: search_api_reference
-  description: ''
+  description: 'Search Redpanda API reference documentation by keyword. Returns up to 20 matching endpoints,
+    schemas, or topics with URL, title, and text excerpts.  SCOPING (important for accurate results):
+    - api="all" or omit: Search across ALL APIs at on'
 - name: get_api_reference_content
-  description: ''
+  description: Retrieve full content of API reference pages by URL. Returns complete endpoint details
+    including parameters, request/response schemas, and examples.  Use this after finding pages via list_api_reference_pages
+    or search_api_reference. Pass th
 - name: submit_documentation_feedback
-  description: ''
+  description: Send feedback about the Redpanda documentation or products directly to the Redpanda team.  If
+    the user hits a bug, a documentation gap, incorrect or missing information, or expresses frustration
+    while using Redpanda, ASK whether they'd like
 - name: get_more_tools
-  description: ''
+  description: Check for additional tools whenever your task might benefit from specialized capabilities
+    - even if existing tools could work as a fallback.
 tools_source: live tools/list via initialize handshake, 2026-09-11 (signals/audit_mcp_authorship.py --probe)
 authorship: provider
+descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
+  --descriptions, 2026-09-28
