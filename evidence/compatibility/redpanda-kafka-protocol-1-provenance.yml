@@ -1,0 +1,12 @@
+fetched: '2026-10-13'
+method: fetched
+source: https://docs.redpanda.com/current/develop/kafka-clients/
+page: https://docs.redpanda.com/current/develop/kafka-clients/
+file: redpanda-kafka-protocol-1.md
+bytes: 25457
+sha256: 556122a57a971852d5e1318d8acfe8a821f0afdb3afdbe39bed04e0511c891f3
+anchor: apache-kafka
+shape: kafka-protocol
+classification: declares-compatibility
+quote: Identify Kafka compatibility exceptions when integrating with Redpanda
+note: text extracted from the provider's own page (tags stripped), saved for evidence
