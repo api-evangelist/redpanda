@@ -1,6 +1,7 @@
 generated: '2026-10-13'
 method: searched
 checked:
+- datadog/integrations/datadog-integration-edges.yml
 - https://aws.amazon.com/marketplace/
 - https://azuremarketplace.microsoft.com/
 marketplace_apps: []
@@ -61,3 +62,22 @@ edges:
   supported_share: 0.171
   detected_by: sweep-shape-compat.py
   first_seen: '2026-10-13'
+- partner_name: Datadog (own)
+  partner: datadog
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://github.com/DataDog/integrations-extras/tree/master/redpanda
+  mirror_of: datadog/integrations/datadog-integration-edges.yml
+  apps:
+  - Redpanda
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Log Collection
+source:
+- datadog/integrations/datadog-integration-edges.yml

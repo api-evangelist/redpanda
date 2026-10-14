@@ -27,3 +27,27 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: redpanda-apache-kafka
+  label: Apache Kafka
+  partner: apache-kafka
+  partner_name: Apache Kafka
+  type: docs
+  channel: provider-built
+  evidence: https://docs.redpanda.com/current/develop/kafka-clients/
+  source: edge
+  relationship: compatible
+  status: not-a-workflow
+  arazzo: null
+- slug: redpanda-datadog-own
+  label: Datadog (own)
+  partner: datadog
+  partner_name: Datadog (own)
+  category: Log Collection
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://github.com/DataDog/integrations-extras/tree/master/redpanda
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
