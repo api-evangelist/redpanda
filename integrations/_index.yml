@@ -27,17 +27,6 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
-- slug: redpanda-apache-kafka
-  label: Apache Kafka
-  partner: apache-kafka
-  partner_name: Apache Kafka
-  type: docs
-  channel: provider-built
-  evidence: https://docs.redpanda.com/current/develop/kafka-clients/
-  source: edge
-  relationship: compatible
-  status: not-a-workflow
-  arazzo: null
 - slug: redpanda-mcp-registry
   label: MCP Registry
   partner: mcp
@@ -55,6 +44,17 @@
     register_id: com.redpanda/docs-mcp
     detected_by: sweep-agent-tools.py
     detected: '2026-10-14'
+  status: not-a-workflow
+  arazzo: null
+- slug: redpanda-apache-kafka
+  label: Apache Kafka
+  partner: apache-kafka
+  partner_name: Apache Kafka
+  type: docs
+  channel: provider-built
+  evidence: https://docs.redpanda.com/current/develop/kafka-clients/
+  source: edge
+  relationship: compatible
   status: not-a-workflow
   arazzo: null
 - slug: redpanda-datadog-own
