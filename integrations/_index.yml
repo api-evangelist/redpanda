@@ -27,25 +27,6 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
-- slug: redpanda-mcp-registry
-  label: MCP Registry
-  partner: mcp
-  partner_name: MCP Registry
-  type: register
-  channel: standard-directory
-  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=com.redpanda
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: registry.modelcontextprotocol.io
-    spec_file: null
-    role: mcp-server-listing
-    registered_name: com.redpanda/docs-mcp
-    register_id: com.redpanda/docs-mcp
-    detected_by: sweep-agent-tools.py
-    detected: '2026-10-14'
-  status: not-a-workflow
-  arazzo: null
 - slug: redpanda-apache-kafka
   label: Apache Kafka
   partner: apache-kafka
@@ -68,5 +49,60 @@
   evidence: https://github.com/DataDog/integrations-extras/tree/master/redpanda
   source: edge
   relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: redpanda-mcp-registry
+  label: MCP Registry
+  partner: mcp
+  partner_name: MCP Registry
+  type: register
+  channel: standard-directory
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=com.redpanda
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: com.redpanda/docs-mcp
+    register_id: com.redpanda/docs-mcp
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
+- slug: redpanda-cncf-cloud-native-landscape
+  label: CNCF (Cloud Native Landscape)
+  partner: cncf
+  partner_name: CNCF (Cloud Native Landscape)
+  category: Cloud native landscape
+  type: register
+  channel: standard-directory
+  evidence: https://github.com/cncf/landscape/blob/3a7d378b1824b82e729a453bb03fa6f1e37557e1/landscape.yml
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: CNCF Cloud Native Landscape (github.com/cncf/landscape landscape.yml @3a7d378b18)
+    spec_file: null
+    standard: Cloud Native (CNCF)
+    role: cncf-member (Silver)
+    registered_name: Redpanda
+    registered_names:
+    - Redpanda
+    - Redpanda (Wasm)
+    website: https://redpanda.com
+    matched_domain: redpanda.com
+    matched_by: domain
+    member_tier: Silver
+    joined: '2020-12-01'
+    end_user: false
+    cncf_projects: []
+    landscape_categories:
+    - App Definition and Development / Streaming & Messaging
+    - Wasm / Embedded Functions
+    landscape_entries: 2
+    signal_note: 'participation only: a landscape listing is standard-participant evidence, not depth. Entries,
+      categories, tier and projects are CONTEXT, never read (breadth is not credit)'
+    detected_by: sweep-cloud-native.py
+    detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
