@@ -70,7 +70,7 @@ apis:
     tags:
       - Admin
       - Cluster
-      - Brokers
+      - Brokerage
       - Configuration
     tags_raw:
       - Admin
